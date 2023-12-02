@@ -23,6 +23,7 @@ class user extends Migration
             $table->boolean('status');
             $table->string('password', 20);
             $table->rememberToken();
+            $table->timestamps(); 
         });
     }
 

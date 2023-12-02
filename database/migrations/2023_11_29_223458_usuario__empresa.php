@@ -18,6 +18,7 @@ class UsuarioEmpresa extends Migration
             $table->unsignedBigInteger('empresa_id');
             $table->foreign('user_id')->references('id')->on('user');
             $table->foreign('empresa_id')->references('id')->on('empresas');
+            $table->timestamps();
         });
     }
 

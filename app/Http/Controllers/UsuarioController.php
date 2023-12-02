@@ -36,8 +36,12 @@ class UserController extends Controller
             'status' => $status,
         ]);
 
+        if (!$user) {
+            return response()->json(['error' => 'Error al crear el usuario'], 500);
+        }
+        
         $token = JWTAuth::attempt($request->only('email', 'password'));
-
+        
         return response()->json(['user' => $user, 'token' => $token], 201);
     }
 

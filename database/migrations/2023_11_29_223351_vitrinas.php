@@ -19,6 +19,7 @@ class Vitrinas extends Migration
             $table->string('descripcion', 255);
             $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresas');
+            $table->timestamps();
         });
     }
 

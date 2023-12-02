@@ -21,6 +21,7 @@ class DetalleSensor extends Migration
             $table->foreign('vitrina_id')->references('id')->on('vitrinas');
             $table->foreign('sensor_id')->references('id')->on('sensores');
             $table->primary(['vitrina_id', 'sensor_id']);
+            $table->timestamps();
         });
     }
 

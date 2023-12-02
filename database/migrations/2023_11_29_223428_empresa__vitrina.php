@@ -19,6 +19,7 @@ class EmpresaVitrina extends Migration
             $table->primary(['empresa_id', 'vitrina_id']);
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->foreign('vitrina_id')->references('id')->on('vitrinas');
+            $table->timestamps();
         });
     }
 
