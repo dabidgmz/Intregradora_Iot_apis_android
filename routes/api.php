@@ -17,14 +17,12 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SensorController;
 use App\Http\Controllers\VitrinaController;
+use App\Http\Middleware\JwtMiddleware;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'login']);
-Route::post('/logout', [UserController::class, 'logout'])->middleware('auth.jwt');
 
 
 // Rutas para CRUD de Empresas
@@ -50,9 +48,12 @@ Route::put('/vitrinas/{id}', [VitrinaController::class, 'update']);
 Route::delete('/vitrinas/{id}', [VitrinaController::class, 'destroy']);
 
 
-Route::middleware(['auth:api'])->group(function () {
-    Route::get('/user', 'UserController@getUser');
-});
 
-Route::post('/register', 'UserController@register');
-Route::post('/login', 'UserController@login');
+
+
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
+Route::middleware(JwtMiddleware::class)->group(function () {
+    // Rutas protegidas por JWT
+    Route::post('/logout', [UserController::class, 'logout']);
+});

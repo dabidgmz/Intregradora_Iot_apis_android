@@ -15,7 +15,8 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:user',
             'password' => 'required|string|min:6|confirmed',
             'departament' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
@@ -29,6 +30,7 @@ class UserController extends Controller
 
         $user = User::create([
             'name' => $request->get('name'),
+            'lastname' => $request->get('lastname'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
             'departament' => $request->get('departament'),
@@ -39,9 +41,9 @@ class UserController extends Controller
         if (!$user) {
             return response()->json(['error' => 'Error al crear el usuario'], 500);
         }
-        
+
         $token = JWTAuth::attempt($request->only('email', 'password'));
-        
+
         return response()->json(['user' => $user, 'token' => $token], 201);
     }
 
@@ -57,7 +59,7 @@ class UserController extends Controller
             return response()->json(['error' => 'No se pudo crear el token'], 500);
         }
 
-        return response()->json(['token' => $token]);
+        return response()->json(['message' => '¡Bienvenido a DAVAC!', 'token' => $token]);
     }
 
     public function logout()
