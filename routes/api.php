@@ -22,9 +22,6 @@ use App\Http\Middleware\JwtMiddleware;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-
 // Rutas para CRUD de Empresas
 Route::get('/empresas', [EmpresaController::class, 'index']);
 Route::get('/empresas/{id}', [EmpresaController::class, 'show']);
@@ -48,12 +45,12 @@ Route::put('/vitrinas/{id}', [VitrinaController::class, 'update']);
 Route::delete('/vitrinas/{id}', [VitrinaController::class, 'destroy']);
 
 
-
+//REVISAR QUE EL SERVER ESTE RECIBIENDO CAMBIOS
 
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::middleware(JwtMiddleware::class)->group(function () {
-    // Rutas protegidas por JWT
-    Route::post('/logout', [UserController::class, 'logout']);
+// Rutas protegidas por JWT
+Route::post('/logout', [UserController::class, 'logout']);
 });
