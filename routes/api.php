@@ -45,7 +45,7 @@ Route::put('/vitrinas/{id}', [VitrinaController::class, 'update']);
 Route::delete('/vitrinas/{id}', [VitrinaController::class, 'destroy']);
 
 
-//REVISAR QUE EL SERVER ESTE RECIBIENDO CAMBIOS
+//REVISAR QUE EL SERVER ESTE RECIBIENDO CAMBIOS 
 
 
 Route::post('/register', [UserController::class, 'register']);
