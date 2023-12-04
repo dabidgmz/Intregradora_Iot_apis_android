@@ -10,7 +10,6 @@
  */
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | JWT Authentication Secret
@@ -260,9 +259,7 @@ return [
     | Specify the various providers used throughout the package.
     |
     */
-
     'providers' => [
-
         /*
         |--------------------------------------------------------------------------
         | JWT Provider
@@ -293,9 +290,7 @@ return [
         | Specify the provider that is used to store tokens in the blacklist.
         |
         */
-
         'storage' => Tymon\JWTAuth\Providers\Storage\Illuminate::class,
-
     ],
 
 ];
